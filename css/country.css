@@ -1,0 +1,27 @@
+h2 {
+  font-size: 36px;
+  text-align: center;
+  text-transform: capitalize;
+}
+#all-countries {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.country {
+  background: #f7f1e3;
+  padding: 20px;
+  border: 2px solid #34ace0;
+  border-radius: 10px;
+  text-align: center;
+}
+.country img {
+  width: 100px;
+}
+.country h3 {
+  font-size: 24px;
+  color: #218c74;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
