@@ -25,3 +25,16 @@ h2 {
   text-transform: uppercase;
   margin: 10px 0;
 }
+
+#title {
+  display: none;
+}
+
+.datils {
+  background-color: #dff9fb;
+  padding: 20px;
+  width: 30%;
+  margin: 20px auto;
+  border-radius: 20px;
+  text-align: center;
+}
