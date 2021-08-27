@@ -1,4 +1,4 @@
-const searchFood = () => {
+const searchFood = async () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     searchField.value = '';
@@ -8,10 +8,17 @@ const searchFood = () => {
     } else {
         document.getElementById('search-error').style.display = 'none'
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => displayFood(data.meals))
-            .catch(error => console.log(error))
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            displayFood(data.meals)
+            document.getElementById('result-error').style.display = 'none';
+        } catch {
+            document.getElementById('result-error').style.display = 'block';
+        }
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => displayFood(data.meals))
     }
 
 }
@@ -41,11 +48,14 @@ const displayFood = meals => {
     });
 };
 
-const loadMealDetail = mealId => {
+const loadMealDetail = async mealId => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => showDetails(data.meals[0]))
+    const res = await fetch(url);
+    const data = await res.json();
+    showDetails(data.meals[0])
+    // fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => showDetails(data.meals[0]))
 }
 
 const showDetails = meal => {
@@ -61,7 +71,7 @@ const showDetails = meal => {
                 <p class="card-text">
                 ${meal.strInstructions.slice(0, 300)}
                 </p>
-                <a href="${meal.strYoutube}" target="_blank" class="btn btn-primary">Go somewhere</a>
+                <a href="${meal.strYoutube}" target="_blank" class="btn btn-primary">Watch Tutorial</a>
             </div>
         `;
 
